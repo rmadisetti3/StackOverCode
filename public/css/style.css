@@ -1,27 +1,58 @@
 body {
-    height: 100%;
-    background-color: #faefd9;
+  height: 100%;
+  background-color: #faefd9;
 }
 main {
-    height: 100%;
-    grid-gap: 10px;
+  height: 100%;
+  grid-gap: 10px;
+  color: white;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+h1 {
+    font-size: 45px;
+    font-family: 'Chakra Petch', sans-serif;
+}
+h2 {
+    font-size: 35px;
+    font-family: 'Quicksand', sans-serif;
+}
+#title {
+    background-color: black;
+    color: rgba(255, 255, 255, 0.884);
+    padding: 10px;
+}
+#so-title {
     color: white;
-    display: grid;
-    grid-template-rows: 30px repeat(2, 1fr);
-    grid-template-columns: 1fr;
-  }
+}
+#so-icon {
+    color: orange;
+    font-size: 33px;
+    margin-right: 10px;
+}
+#stack {
+    display: inline-flex;
+    padding: 10px;
+}
 .code-editor {
-
+  height: 100%;
+  grid-column: span 1;
+  float: left;
+    width: 60%;
 }
 
 .active{
   border-color: #f00;
 }
 .stack-side {
-    background-color: #d9e7fa;
+    background-color: #013b3b;
+  height: 100%;
+  float: right;
+  width: 40%;
 }
 .dropbtn {
-  background-color: #013b3b;
+    background-color: #1ecece;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -49,7 +80,7 @@ main {
   display: block;
 }
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: #1ecece;
 }
 .dropdown:hover .dropdown-content {
   display: block;
