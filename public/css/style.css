@@ -43,6 +43,10 @@ h2 {
   float: left;
     width: 60%;
 }
+
+.active{
+  border-color: #f00;
+}
 .stack-side {
     background-color: #013b3b;
   height: 100%;

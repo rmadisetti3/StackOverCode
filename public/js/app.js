@@ -7,6 +7,11 @@ const addCode = function(event) {
 }
 $('#response').on('click', addCode);
 
+$('#response').on('click', function(){
+    $('#response').addClass('active');
+});
+
+$('#response').on('click', addCode);
 
 
 
