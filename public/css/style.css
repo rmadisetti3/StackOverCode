@@ -13,6 +13,10 @@ main {
 .code-editor {
 
 }
+
+.active{
+  border-color: #f00;
+}
 .stack-side {
     background-color: #d9e7fa;
 }
