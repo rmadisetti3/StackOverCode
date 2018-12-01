@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/rmadisetti3/StackOverCode/issues"
   },
-  "homepage": "https://github.com/rmadisetti3/StackOverCode#readme"
+  "homepage": "https://github.com/rmadisetti3/StackOverCode#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.16.4",
+    "mocha": "^5.2.0"
+  }
 }
