@@ -27,3 +27,18 @@ describe('GET API route', function () {
         expect($('#response').text()).to.equal('for (let i = 0; i < 10; i++) { let sum; sum  = sum + i; }');
       });
     });
+
+    describe('change language', function () {
+          it('changes to Javascript', function () {
+            $('#js').trigger('click');
+            expect($('.dropbtn').text()).to.equal('JavaScript');
+          });
+          it('changes to HTML', function () {
+            $('#html').trigger('click');
+            expect($('.dropbtn').text()).to.equal('HTML');
+          });
+          it('changes to CSS', function () {
+            $('#css').trigger('click');
+            expect($('.dropbtn').text()).to.equal('CSS');
+          });
+        });
