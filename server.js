@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 // -----------------
 
-require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 
 // Starts our server on the predefined PORT
