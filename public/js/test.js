@@ -31,14 +31,14 @@ describe('GET API route', function () {
     describe('change language', function () {
           it('changes to Javascript', function () {
             $('#js').trigger('click');
-            expect($('.dropbtn').text()).to.equal('JavaScript');
+            expect($('.custom-select').text()).to.equal('JavaScript');
           });
           it('changes to HTML', function () {
             $('#html').trigger('click');
-            expect($('.dropbtn').text()).to.equal('HTML');
+            expect($('.custom-select').text()).to.equal('HTML');
           });
           it('changes to CSS', function () {
             $('#css').trigger('click');
-            expect($('.dropbtn').text()).to.equal('CSS');
+            expect($('.custom-select').text()).to.equal('CSS');
           });
         });
