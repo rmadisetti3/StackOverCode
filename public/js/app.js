@@ -1,18 +1,17 @@
-////-------------------Tri code---------------///////////////
+////-------------------start Tri code---------------///////////////
 /**
  * return an array of accepted answer IDs
  * @param {a string} queryString 
  */
 const getResults = function(queryString) {
-  const encodedQueryString = encodeURI("for loop javascript");
+  const encodedQueryString = encodeURI(queryString);
   // const encodedQueryString = encodeURI(queryString);
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=3&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {
     const answerList = results.items.map(e => e.accepted_answer_id);
+    getAnswerBody(answerList);
   });
 };
-
-// getResults();
 
 /**
  * return an array of answer bodies
@@ -30,7 +29,7 @@ const getAnswerBody = function(answerList) {
         const answerBodyList = results.items.map(e => e.body);
         renderResults(answerBodyList);
     });
-}
+};
 
 /**
  * render a list of answer bodies to code-suggestions pane
@@ -38,12 +37,19 @@ const getAnswerBody = function(answerList) {
  */
 const renderResults = function(answerBodyList){
     answerBodyList.forEach(e => {
-        $('#content').append(`<div class='answer'>${e}</div>`)
-    })
+        $('#content').append(`<div class='answer'>${e}</div>`);
+    });
+    $('code').wrap("<div class='code'></div>");
+    $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
 };
 
-getAnswerBody([30651166, 21275936, 40528667]);
-////-------------------Tri code---------------///////////////
+getResults('for loop javascript');
+
+
+$(document).on('click', 'code', function(){
+  $('.code-editor').append(`${$(this).text()}<br />`);
+});
+////-------------------end Tri code---------------///////////////
 
 const addCode = function(event) {
   event.preventDefault();
