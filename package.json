@@ -18,6 +18,7 @@
   "homepage": "https://github.com/rmadisetti3/StackOverCode#readme",
   "dependencies": {
     "chai": "^4.2.0",
+    "codemirror": "^5.42.0",
     "express": "^4.16.4",
     "mocha": "^5.2.0"
   }
