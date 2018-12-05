@@ -1,7 +1,7 @@
 
 const editor = {
     currentEditor: null,
-    create: function(container, language) {
+    create: (container, language) => {
         editor.destroy(container);
 
         let id = `${language}_editor_area`;
@@ -17,8 +17,11 @@ const editor = {
 
         $(".CodeMirror").css("height", "95vh");
     },
-    destroy: function (container) {
+    destroy: () => {
         $(container).empty();
+    },
+    getQuestion: () => {
+        editor.currentEditor.doc.eachLine( (line) => {console.log(line.text)});
     }
 }
 
