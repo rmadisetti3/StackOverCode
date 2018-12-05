@@ -118,3 +118,10 @@ code {
   font-family: courier, monospace;
   font-weight: 400;
 }
+.code{
+  /* border: solid; */
+  background-color: white;
+  color: black;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+}

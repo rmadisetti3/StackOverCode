@@ -1,4 +1,4 @@
-////-------------------Tri code---------------///////////////
+////-------------------start Tri code---------------///////////////
 /**
  * return an array of accepted answer IDs
  * @param {a string} queryString 
@@ -29,7 +29,7 @@ const getAnswerBody = function(answerList) {
         const answerBodyList = results.items.map(e => e.body);
         renderResults(answerBodyList);
     });
-}
+};
 
 /**
  * render a list of answer bodies to code-suggestions pane
@@ -37,12 +37,18 @@ const getAnswerBody = function(answerList) {
  */
 const renderResults = function(answerBodyList){
     answerBodyList.forEach(e => {
-        $('#content').append(`<div class='answer'>${e}</div>`)
+        $('#content').append(`<div class='answer'>${e}</div>`);
     })
+    $('code').wrap("<div class='code'></div>");
 };
 
-getResults('for loop javascript')
-////-------------------Tri code---------------///////////////
+getResults('for loop javascript');
+
+
+$(document).on('click', 'code', function(){
+  $('.code-editor').append(`${$(this).text()}<br />`);
+});
+////-------------------end Tri code---------------///////////////
 
 const addCode = function(event) {
   event.preventDefault();
