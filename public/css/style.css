@@ -24,7 +24,7 @@ main {
   display: inline-flex;
   padding: 10px;
   padding-left: 20px;
-  padding-bottom: 150%;
+  /* padding-bottom: 150%; */
 }
 h1 {
   font-size: 45px;
