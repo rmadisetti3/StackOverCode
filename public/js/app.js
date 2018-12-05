@@ -1,7 +1,7 @@
 
 ////-------------------Tri code---------------///////////////
 /**
- * 
+ * return an array of accepted answer IDs
  * @param {a string} queryString 
  */
 const getResults = function(queryString){
@@ -30,8 +30,7 @@ const getAnswerBody = function(answerList){
     const queryURL = `https://api.stackexchange.com/2.2/answers/${encodedQueryString}?&site=stackoverflow&filter=withbody`;
     $.get(queryURL).then(results => {
         const answerBodyList = results.items.map(e => e.body);
-        console.log(answerBodyList);
-        return answerBodyList;
+        renderResults(answerBodyList);
     });
 }
 
@@ -40,14 +39,12 @@ const getAnswerBody = function(answerList){
  * @param {a list of answer bodies} answerBodyList 
  */
 const renderResults = function(answerBodyList){
-    console.log(typeof answerBodyList);
-    // answerBodyList.forEach(e => {
-    //     $('#codeSuggestions').append(`<div class='answer'>${e}</div>`)
-    // })
-}
-// getAnswerBody([30651166, 21275936, 40528667]);
-const answerBodyList = getAnswerBody([30651166, 21275936, 40528667]);
-// renderResults(answerBodyList);
+    answerBodyList.forEach(e => {
+        $('#content').append(`<div class='answer'>${e}</div>`)
+    })
+};
+
+getAnswerBody([30651166, 21275936, 40528667]);
 ////-------------------Tri code---------------///////////////
 
 
