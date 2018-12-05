@@ -2,14 +2,6 @@ body {
   height: 100%;
   background-color: #faefd9;
 }
-main {
-  height: 100%;
-  grid-gap: 10px;
-  color: white;
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr;
-}
 h1 {
   font-size: 45px;
   font-family: "Chakra Petch", sans-serif;
