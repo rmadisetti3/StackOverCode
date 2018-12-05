@@ -1,30 +1,29 @@
 body {
   height: 100vh;
-  background-color: #faefd9;
-}
-main {
-  height: 100%;
-  grid-gap: 10px;
-  color: white;
+  width: 100%;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 60% 1fr;
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-row: span 1;
+  grid-column: span 1;
+}
+.code-editor {
+  /* height: 100%; */
+  width: auto;
+  background-color: #faefd9;
 }
 .stack-side {
   background-color: #013b3b;
-  height: 100%;
-  float: right;
-  width: 40%;
+  width: auto;
+  /* height: 100%; */
   grid-template-rows: 60px 1fr;
   display: grid;
   font-family: "Quicksand", sans-serif;
 }
 #stack {
-  grid-row: span 1;
   display: inline-flex;
   padding: 10px;
   padding-left: 20px;
-  /* padding-bottom: 150%; */
 }
 h1 {
   font-size: 45px;
@@ -37,6 +36,8 @@ h2 {
   background-color: black;
   color: rgba(255, 255, 255, 0.884);
   padding: 10px;
+  grid-row: span 1;
+  grid-column: span 2;
 }
 #so-title {
   color: white;
@@ -45,12 +46,6 @@ h2 {
   color: orange;
   font-size: 33px;
   margin-right: 10px;
-}
-.code-editor {
-  height: 100%;
-  grid-column: span 1;
-  float: left;
-  width: 60%;
 }
 
 /*the container must be positioned relative:*/
@@ -111,9 +106,15 @@ h2 {
   color: white;
   grid-row: span 1;
   padding-left: 20px;
+  padding-right: 20px
 }
 .answer {
   border: solid white;
+  border-radius: 10px;
   margin-bottom: 20px;
   padding: 10px 10px 10px 10px;
+}
+code {
+  font-family: courier, monospace;
+  font-weight: 400;
 }
