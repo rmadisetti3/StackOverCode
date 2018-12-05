@@ -4,15 +4,14 @@
  * @param {a string} queryString 
  */
 const getResults = function(queryString) {
-  const encodedQueryString = encodeURI("for loop javascript");
+  const encodedQueryString = encodeURI(queryString);
   // const encodedQueryString = encodeURI(queryString);
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=3&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {
     const answerList = results.items.map(e => e.accepted_answer_id);
+    getAnswerBody(answerList);
   });
 };
-
-// getResults();
 
 /**
  * return an array of answer bodies
@@ -42,7 +41,7 @@ const renderResults = function(answerBodyList){
     })
 };
 
-getAnswerBody([30651166, 21275936, 40528667]);
+getResults('for loop javascript')
 ////-------------------Tri code---------------///////////////
 
 const addCode = function(event) {
