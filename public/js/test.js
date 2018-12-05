@@ -58,7 +58,6 @@ it("receives data from the Stack Exchange API", function() {
     "for (let i = 0; i < 10; i++) { let sum; sum  = sum + i; }"
   );
 });
-
 // describe('change language', function () {
 //       it('changes to Javascript', function () {
 //         $('#js').trigger('click');
