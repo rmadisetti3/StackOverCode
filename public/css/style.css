@@ -117,11 +117,30 @@ h2 {
 code {
   font-family: courier, monospace;
   font-weight: 400;
+  cursor: pointer;
 }
 .code{
-  /* border: solid; */
   background-color: white;
   color: black;
   padding: 5px 5px 5px 5px;
-  margin: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 0px;
+  position: relative;
+}
+.code .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  position: absolute;
+  z-index: 1;
+  top: 25px;
+  left: 10%;
+}
+
+.code:hover .tooltiptext {
+  visibility: visible;
 }

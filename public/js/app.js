@@ -38,8 +38,9 @@ const getAnswerBody = function(answerList) {
 const renderResults = function(answerBodyList){
     answerBodyList.forEach(e => {
         $('#content').append(`<div class='answer'>${e}</div>`);
-    })
+    });
     $('code').wrap("<div class='code'></div>");
+    $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
 };
 
 getResults('for loop javascript');
