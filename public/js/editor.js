@@ -30,17 +30,15 @@ const editor = {
     },
     hasAQuestion: (line) => {
         if(line.includes("//? ")) {
-            let split = line.split("//? ");
-            if(split.length > 1) {
-                console.log(split.filter(e => e !== ""));
-            }
+            return line.substring(line.indexOf("//? "), line.length).length > 4;
         };
     },
     scanForQuestions: () => {
         let questions = [];
         editor.currentEditor.doc.eachLine( (line) => { 
-            editor.hasAQuestion(line.text);
+            if(editor.hasAQuestion(line.text)) questions.push(line.text);
         });
+        return questions;
     },
     listeners: {
         selectEditorLanguage:   () => {
