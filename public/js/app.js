@@ -1,73 +1,70 @@
-
-////-------------------Tri code---------------///////////////
+////-------------------start Tri code---------------///////////////
 /**
- * 
+ * return an array of accepted answer IDs
  * @param {a string} queryString 
  */
-const getResults = function(queryString){
-    const encodedQueryString = encodeURI('for loop javascript');
-    // const encodedQueryString = encodeURI(queryString);
-    const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=3&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
-    $.get(queryURL).then(results => {
-        const answerList = results.items.map(e => e.accepted_answer_id);
-
-    })
+const getResults = function(queryString) {
+  const encodedQueryString = encodeURI(queryString);
+  // const encodedQueryString = encodeURI(queryString);
+  const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=3&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
+  $.get(queryURL).then(results => {
+    const answerList = results.items.map(e => e.accepted_answer_id);
+    getAnswerBody(answerList);
+  });
 };
-
-// getResults();
 
 /**
  * return an array of answer bodies
- * @param {an array of answer IDs} answerList 
+ * @param {an array of answer IDs} answerList
  */
-const getAnswerBody = function(answerList){
-    let encodedQueryString = '';
-    answerList.forEach(e => {
-        encodedQueryString += `${e.toString()}%3B`;
-    });
-    encodedQueryString = encodedQueryString.slice(0, -3);
+const getAnswerBody = function(answerList) {
+  let encodedQueryString = "";
+  answerList.forEach(e => {
+    encodedQueryString += `${e.toString()}%3B`;
+  });
+  encodedQueryString = encodedQueryString.slice(0, -3);
 
     const queryURL = `https://api.stackexchange.com/2.2/answers/${encodedQueryString}?&site=stackoverflow&filter=withbody`;
     $.get(queryURL).then(results => {
         const answerBodyList = results.items.map(e => e.body);
-        console.log(answerBodyList);
-        return answerBodyList;
+        renderResults(answerBodyList);
     });
-}
+};
 
 /**
  * render a list of answer bodies to code-suggestions pane
- * @param {a list of answer bodies} answerBodyList 
+ * @param {a list of answer bodies} answerBodyList
  */
 const renderResults = function(answerBodyList){
-    console.log(typeof answerBodyList);
-    // answerBodyList.forEach(e => {
-    //     $('#codeSuggestions').append(`<div class='answer'>${e}</div>`)
-    // })
-}
-// getAnswerBody([30651166, 21275936, 40528667]);
-const answerBodyList = getAnswerBody([30651166, 21275936, 40528667]);
-// renderResults(answerBodyList);
-////-------------------Tri code---------------///////////////
+    answerBodyList.forEach(e => {
+        $('#content').append(`<div class='answer'>${e}</div>`);
+    });
+    $('code').wrap("<div class='code'></div>");
+    $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
+};
 
+getResults('for loop javascript');
+
+
+$(document).on('click', 'code', function(){
+  $('.code-editor').append(`${$(this).text()}<br />`);
+});
+////-------------------end Tri code---------------///////////////
 
 const addCode = function(event) {
-    event.preventDefault();
-    $('#response').empty();
-    $.get(`/api/search`, function(data){
-        $('#response').text(data.excerpt);
-    })
-}
-$('#response').on('click', addCode);
+  event.preventDefault();
+  $("#response").empty();
+  $.get(`/api/search`, function(data) {
+    $("#response").text(data.excerpt);
+  });
+};
+$("#response").on("click", addCode);
 
-$('#response').on('click', function(){
-    $('#response').addClass('active');
+$("#response").on("click", function() {
+  $("#response").addClass("active");
 });
 
-$('#response').on('click', addCode);
-
-
-
+//functions for the drop-down menu
 var x, i, j, selElmnt, a, b, c;
 /*look for any elements with the class "custom-select":*/
 x = document.getElementsByClassName("custom-select");
@@ -87,46 +84,49 @@ for (i = 0; i < x.length; i++) {
     c = document.createElement("DIV");
     c.innerHTML = selElmnt.options[j].innerHTML;
     c.addEventListener("click", function(e) {
-        /*when an item is clicked, update the original select box,
+      /*when an item is clicked, update the original select box,
         and the selected item:*/
-        var y, i, k, s, h;
-        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-        h = this.parentNode.previousSibling;
-        for (i = 0; i < s.length; i++) {
-          if (s.options[i].innerHTML == this.innerHTML) {
-            s.selectedIndex = i;
-            h.innerHTML = this.innerHTML;
-            y = this.parentNode.getElementsByClassName("same-as-selected");
-            for (k = 0; k < y.length; k++) {
-              y[k].removeAttribute("class");
-            }
-            this.setAttribute("class", "same-as-selected");
-            break;
+      var y, i, k, s, h;
+      s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+      h = this.parentNode.previousSibling;
+      for (i = 0; i < s.length; i++) {
+        if (s.options[i].innerHTML == this.innerHTML) {
+          s.selectedIndex = i;
+          h.innerHTML = this.innerHTML;
+          y = this.parentNode.getElementsByClassName("same-as-selected");
+          for (k = 0; k < y.length; k++) {
+            y[k].removeAttribute("class");
           }
+          this.setAttribute("class", "same-as-selected");
+          break;
         }
-        h.click();
+      }
+      h.click();
     });
     b.appendChild(c);
   }
   x[i].appendChild(b);
   a.addEventListener("click", function(e) {
-      /*when the select box is clicked, close any other select boxes,
+    /*when the select box is clicked, close any other select boxes,
       and open/close the current select box:*/
-      e.stopPropagation();
-      closeAllSelect(this);
-      this.nextSibling.classList.toggle("select-hide");
-      this.classList.toggle("select-arrow-active");
+    e.stopPropagation();
+    closeAllSelect(this);
+    this.nextSibling.classList.toggle("select-hide");
+    this.classList.toggle("select-arrow-active");
   });
 }
 function closeAllSelect(elmnt) {
   /*a function that will close all select boxes in the document,
   except the current select box:*/
-  var x, y, i, arrNo = [];
+  var x,
+    y,
+    i,
+    arrNo = [];
   x = document.getElementsByClassName("select-items");
   y = document.getElementsByClassName("select-selected");
   for (i = 0; i < y.length; i++) {
     if (elmnt == y[i]) {
-      arrNo.push(i)
+      arrNo.push(i);
     } else {
       y[i].classList.remove("select-arrow-active");
     }
