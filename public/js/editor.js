@@ -11,17 +11,22 @@ const editor = {
 
         editor.currentEditor = CodeMirror.fromTextArea(document.getElementById(id), {
             mode:  language.toLowerCase(),
-            theme: "default",
+            theme: "darcula",
             lineNumbers: true
         });
 
         $(".CodeMirror").css("height", "95vh");
     },
-    destroy: () => {
+    destroy: (container) => {
         $(container).empty();
     },
     getQuestion: () => {
-        editor.currentEditor.doc.eachLine( (line) => {console.log(line.text)});
+        editor.currentEditor.doc.eachLine( (line) => { 
+            // do something for each line
+        });
+    },
+    listeners: () => {
+        $(".custom-select").find('select').
     }
 }
 
