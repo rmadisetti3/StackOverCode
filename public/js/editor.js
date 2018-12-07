@@ -1,9 +1,3 @@
-
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.split(search).join(replacement);
-};
-
 const editor = {
     currentEditor: null,
     create: (container, language) => {
@@ -24,23 +18,25 @@ const editor = {
         );
 
         $(".CodeMirror").css("height", "auto");
+
+        editor.listeners.onCursorActivity(editor.currentEditor);
     },
     destroy: (container) => {
         $(container).empty();
     },
     hasAQuestion: (line) => {
         if(line.includes("//? ")) {
-            let split = line.split("//? ");
-            if(split.length > 1) {
-                console.log(split.filter(e => e !== ""));
-            }
+            return line.substring(line.indexOf("//? "), line.length).length > 4;
         };
     },
     scanForQuestions: () => {
         let questions = [];
         editor.currentEditor.doc.eachLine( (line) => { 
-            editor.hasAQuestion(line.text);
+            if(editor.hasAQuestion(line.text)) {
+                questions.push(line.text.replaceAll("//? ", ""));
+            }
         });
+        return questions;
     },
     listeners: {
         selectEditorLanguage:   () => {
@@ -48,10 +44,26 @@ const editor = {
                 editor.create($("#editor"), 
                 $(".same-as-selected")[0].textContent);
             })
+        },
+        addReplaceAllFunc: () => {
+            String.prototype.replaceAll = function(search, replacement) {
+                var target = this;
+                return target.split(search).join(replacement);
+            };
+        },
+        onCursorActivity: (_currentEditor) => {
+            _currentEditor.on('cursorActivity', () => {
+                let questions = editor.scanForQuestions();
+                if(questions.length > 0) {
+                    $("#content").empty();
+                    getResults(questions[0]);
+                }
+            });
         }    
     },
     init: () => {
         editor.listeners.selectEditorLanguage();
+        editor.listeners.addReplaceAllFunc();
     }
 }
 
