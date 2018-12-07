@@ -16,7 +16,7 @@ body {
 .stack-side {
   background-color: #013b3b;
   width: auto;
-  height: 100%;
+  /* height: 100%; */
   grid-template-rows: 60px 1fr;
   display: grid;
   font-family: "Quicksand", sans-serif;

@@ -44,7 +44,7 @@ const editor = {
                 editor.create($("#editor"), 
                 $(".same-as-selected")[0].textContent);
                 const language = $(".same-as-selected")[0].textContent;
-                getResults('for loop',language);
+                getResults('while loop',language);
             })
         },
         addReplaceAllFunc: () => {
