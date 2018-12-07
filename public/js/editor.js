@@ -23,7 +23,7 @@ const editor = {
             }
         );
 
-        $(".CodeMirror").css("height", "95vh");
+        $(".CodeMirror").css("height", "auto");
     },
     destroy: (container) => {
         $(container).empty();
