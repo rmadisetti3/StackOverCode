@@ -2,11 +2,10 @@ body {
   height: 100vh;
   width: 100vw;
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 40% 1fr;
+  grid-template-columns: 4fr 1fr;
   display: grid;
   grid-row: span 1;
   grid-column: span 1;
-  overflow: hidden;
 }
 .code-editor {
   /* height: 100%; */
@@ -20,7 +19,6 @@ body {
   grid-template-rows: 60px 1fr;
   display: grid;
   font-family: "Quicksand", sans-serif;
-  overflow-y: scroll;
 }
 #stack {
   display: inline-flex;
@@ -145,13 +143,4 @@ code {
 
 .code:hover .tooltiptext {
   visibility: visible;
-}
-
-a:link {
-  color: red;
-}
-
-/* visited link */
-a:visited {
-  color: rgb(64, 206, 64);
 }
