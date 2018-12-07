@@ -5,8 +5,8 @@
  */
 const getResults = function(queryString) {
   const encodedQueryString = encodeURI(queryString);
-  // const encodedQueryString = encodeURI(queryString);
-  const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=3&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
+  const numberOfResults = 3;
+  const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {
     const answerList = results.items.map(e => e.accepted_answer_id);
     getAnswerBody(answerList);
