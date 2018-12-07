@@ -3,8 +3,8 @@
  * return an array of accepted answer IDs
  * @param {a string} queryString 
  */
-const getResults = function(queryString) {
-  queryString = queryString.toLowerCase() + ' ' + $('#languageSelector').val();
+const getResults = function(queryString,language) {
+  queryString = queryString.toLowerCase() + ' ' + language;
   const encodedQueryString = encodeURI(queryString);
   const numberOfResults = 3;
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
@@ -47,12 +47,9 @@ const renderResults = function(answerBodyList){
 
 // $('#languageSelector').on('change', "select", getResults('for loop'));
 // $('#languageSelector').on("change", "select", console.log(Date.now()));
-$('#languageSelector1').on('change', () => console.log('its me'));
+// $('#languageSelector1').on('change', () => console.log('its me'));
+// $('#languageSelector1').on('change', () => console.log('its me'));
 
-// $('option').on('click', function(event){
-//   console.log(event.target);
-//   const language = this.text();
-// });
 
 $(document).on('click', 'code', function(){
   $('.code-editor').append(`${$(this).text()}<br />`);
