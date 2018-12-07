@@ -4,6 +4,7 @@
  * @param {a string} queryString 
  */
 const getResults = function(queryString) {
+  queryString = queryString.toLowerCase() + ' ' + $('#languageSelector').val();
   const encodedQueryString = encodeURI(queryString);
   const numberOfResults = 3;
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
@@ -36,15 +37,16 @@ const getAnswerBody = function(answerList) {
  * @param {a list of answer bodies} answerBodyList
  */
 const renderResults = function(answerBodyList){
-    answerBodyList.forEach(e => {
-        $('#content').append(`<div class='answer'>${e}</div>`);
-    });
-    $('code').wrap("<div class='code'></div>");
-    $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
+  $('#content').html('');
+  answerBodyList.forEach(e => {
+      $('#content').append(`<div class='answer'>${e}</div>`);
+  });
+  $('code').wrap("<div class='code'></div>");
+  $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
 };
 
-getResults('for loop javascript');
-
+// $('#languageSelector').on('change', "select", getResults('for loop'));
+$('#languageSelector').on('change', "select", console.log('its me'));
 
 $(document).on('click', 'code', function(){
   $('.code-editor').append(`${$(this).text()}<br />`);
