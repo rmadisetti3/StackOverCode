@@ -46,7 +46,13 @@ const renderResults = function(answerBodyList){
 };
 
 // $('#languageSelector').on('change', "select", getResults('for loop'));
-$('#languageSelector').on('change', "select", console.log('its me'));
+// $('#languageSelector').on("change", "select", console.log(Date.now()));
+$('#languageSelector1').on('change', () => console.log('its me'));
+
+// $('option').on('click', function(event){
+//   console.log(event.target);
+//   const language = this.text();
+// });
 
 $(document).on('click', 'code', function(){
   $('.code-editor').append(`${$(this).text()}<br />`);
