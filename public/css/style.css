@@ -115,6 +115,7 @@ h2 {
   border-radius: 5px;
   margin-bottom: 20px;
   padding: 10px 10px 10px 10px;
+  width: auto;
 }
 code {
   font-family: courier, monospace;
@@ -136,7 +137,6 @@ code {
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-
   position: absolute;
   z-index: 1;
   top: 25px;
