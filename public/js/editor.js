@@ -51,15 +51,35 @@ const editor = {
                 return target.split(search).join(replacement);
             };
         },
-        onCursorActivity: (_currentEditor) => {
-            _currentEditor.on('cursorActivity', () => {
-                let questions = editor.scanForQuestions();
-                if(questions.length > 0) {
-                    $("#content").empty();
-                    getResults(questions[0]);
+        debounce: function(func, wait, immediate) {
+            var timeout;
+            return function() {
+                var context = this,
+                    args = arguments;
+                var later = function() {
+                    timeout = null;
+                    if ( !immediate ) {
+                        func.apply(context, args);
+                    }
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait || 200);
+                if ( callNow ) { 
+                    func.apply(context, args);
                 }
-            });
-        }    
+            };
+        },
+        onCursorActivity: (_currentEditor) => {
+            _currentEditor.on('cursorActivity', editor.listeners.debounce(
+                () => {
+                    let questions = editor.scanForQuestions();
+                    if(questions.length > 0) {
+                        $("#content").empty();
+                        getResults(questions[0]);
+                    }
+                }, 5000, false))
+        }
     },
     init: () => {
         editor.listeners.selectEditorLanguage();
