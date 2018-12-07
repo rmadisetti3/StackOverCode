@@ -43,8 +43,6 @@ const renderResults = function(answerBodyList){
     $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
 };
 
-getResults('while loop');
-
 
 // $(document).on('click', 'code', function(){
 //   $('.code-editor').append(`${$(this).text()}<br />`);
