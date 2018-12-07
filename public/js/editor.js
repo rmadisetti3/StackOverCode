@@ -1,9 +1,3 @@
-
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.split(search).join(replacement);
-};
-
 const editor = {
     currentEditor: null,
     create: (container, language) => {
@@ -24,23 +18,25 @@ const editor = {
         );
 
         $(".CodeMirror").css("height", "auto");
+
+        editor.listeners.onCursorActivity(editor.currentEditor);
     },
     destroy: (container) => {
         $(container).empty();
     },
     hasAQuestion: (line) => {
         if(line.includes("//? ")) {
-            let split = line.split("//? ");
-            if(split.length > 1) {
-                console.log(split.filter(e => e !== ""));
-            }
+            return line.substring(line.indexOf("//? "), line.length).length > 4;
         };
     },
     scanForQuestions: () => {
         let questions = [];
         editor.currentEditor.doc.eachLine( (line) => { 
-            editor.hasAQuestion(line.text);
+            if(editor.hasAQuestion(line.text)) {
+                questions.push(line.text.replaceAll("//? ", ""));
+            }
         });
+        return questions;
     },
     listeners: {
         selectEditorLanguage:   () => {
@@ -48,10 +44,46 @@ const editor = {
                 editor.create($("#editor"), 
                 $(".same-as-selected")[0].textContent);
             })
-        }    
+        },
+        addReplaceAllFunc: () => {
+            String.prototype.replaceAll = function(search, replacement) {
+                var target = this;
+                return target.split(search).join(replacement);
+            };
+        },
+        debounce: function(func, wait, immediate) {
+            var timeout;
+            return function() {
+                var context = this,
+                    args = arguments;
+                var later = function() {
+                    timeout = null;
+                    if ( !immediate ) {
+                        func.apply(context, args);
+                    }
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait || 200);
+                if ( callNow ) { 
+                    func.apply(context, args);
+                }
+            };
+        },
+        onCursorActivity: (_currentEditor) => {
+            _currentEditor.on('cursorActivity', editor.listeners.debounce(
+                () => {
+                    let questions = editor.scanForQuestions();
+                    if(questions.length > 0) {
+                        $("#content").empty();
+                        getResults(questions[0]);
+                    }
+                }, 5000, false))
+        }
     },
     init: () => {
         editor.listeners.selectEditorLanguage();
+        editor.listeners.addReplaceAllFunc();
     }
 }
 
