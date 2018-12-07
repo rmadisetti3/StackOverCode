@@ -1,6 +1,8 @@
 Heroku Link: https://stackovercode.herokuapp.com/
+
 # Screenshot
-![StackOverCode Screenshot](https://i.ibb.co/qmm2ZxW/design.png)
+![StackOverCode Screenshot](https://i.ibb.co/F6j1G7Q/Screen-Shot-2018-12-06-at-7-57-52-PM.png)
+
 # StackOverCode
 This is a project for a Coding Bootcamp. We are not profiting from this project. 
 
