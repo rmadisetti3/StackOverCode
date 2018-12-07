@@ -1,5 +1,6 @@
 Heroku Link: https://stackovercode.herokuapp.com/
-
+# Screenshot
+![StackOverCode Screenshot](https://i.ibb.co/qmm2ZxW/design.png)
 # StackOverCode
 This is a project for a Coding Bootcamp. We are not profiting from this project. 
 
@@ -20,7 +21,10 @@ To get started with this project you will need to clone into the repository on y
 You will need the following installed on your machine to be able to run our app:
 
 * Node.js
-* 
+* Express
+* Code Mirror
+* Stack Exchange
+* Mocha/Chai
 
 ## Deployment
 
