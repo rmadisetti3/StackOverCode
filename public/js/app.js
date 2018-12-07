@@ -46,9 +46,9 @@ const renderResults = function(answerBodyList){
 getResults('while loop');
 
 
-$(document).on('click', 'code', function(){
-  $('.code-editor').append(`${$(this).text()}<br />`);
-});
+// $(document).on('click', 'code', function(){
+//   $('.code-editor').append(`${$(this).text()}<br />`);
+// });
 ////-------------------end Tri code---------------///////////////
 
 const addCode = function(event) {

@@ -1,3 +1,4 @@
+
 const editor = {
     currentEditor: null,
     create: (container, language) => {
@@ -38,18 +39,18 @@ const editor = {
         });
         return questions;
     },
+    addReplaceAllFunc: () => {
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.split(search).join(replacement);
+        };
+    },
     listeners: {
         selectEditorLanguage:   () => {
             $(".select-items").children().click( () => { 
                 editor.create($("#editor"), 
                 $(".same-as-selected")[0].textContent);
             })
-        },
-        addReplaceAllFunc: () => {
-            String.prototype.replaceAll = function(search, replacement) {
-                var target = this;
-                return target.split(search).join(replacement);
-            };
         },
         debounce: function(func, wait, immediate) {
             var timeout;
@@ -83,7 +84,7 @@ const editor = {
     },
     init: () => {
         editor.listeners.selectEditorLanguage();
-        editor.listeners.addReplaceAllFunc();
+        editor.addReplaceAllFunc();
     }
 }
 
