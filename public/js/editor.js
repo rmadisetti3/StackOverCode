@@ -1,9 +1,3 @@
-
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.split(search).join(replacement);
-};
-
 const editor = {
     currentEditor: null,
     create: (container, language) => {
@@ -23,7 +17,9 @@ const editor = {
             }
         );
 
-        $(".CodeMirror").css("height", "95vh");
+        $(".CodeMirror").css("height", "auto");
+
+        editor.listeners.onCursorActivity(editor.currentEditor);
     },
     destroy: (container) => {
         $(container).empty();
@@ -36,7 +32,9 @@ const editor = {
     scanForQuestions: () => {
         let questions = [];
         editor.currentEditor.doc.eachLine( (line) => { 
-            if(editor.hasAQuestion(line.text)) questions.push(line.text);
+            if(editor.hasAQuestion(line.text)) {
+                questions.push(line.text.replaceAll("//? ", ""));
+            }
         });
         return questions;
     },
@@ -46,10 +44,26 @@ const editor = {
                 editor.create($("#editor"), 
                 $(".same-as-selected")[0].textContent);
             })
+        },
+        addReplaceAllFunc: () => {
+            String.prototype.replaceAll = function(search, replacement) {
+                var target = this;
+                return target.split(search).join(replacement);
+            };
+        },
+        onCursorActivity: (_currentEditor) => {
+            _currentEditor.on('cursorActivity', () => {
+                let questions = editor.scanForQuestions();
+                if(questions.length > 0) {
+                    $("#content").empty();
+                    getResults(questions[0]);
+                }
+            });
         }    
     },
     init: () => {
         editor.listeners.selectEditorLanguage();
+        editor.listeners.addReplaceAllFunc();
     }
 }
 
