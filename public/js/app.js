@@ -3,10 +3,11 @@
  * return an array of accepted answer IDs
  * @param {a string} queryString 
  */
-const getResults = function(queryString) {
+const getResults = function(queryString,language) {
+  queryString = queryString.toLowerCase() + ' ' + language;
   const encodedQueryString = encodeURI(queryString);
-  // const encodedQueryString = encodeURI(queryString);
-  const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=3&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
+  const numberOfResults = 3;
+  const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {
     const answerList = results.items.map(e => e.accepted_answer_id);
     getAnswerBody(answerList);
@@ -36,12 +37,18 @@ const getAnswerBody = function(answerList) {
  * @param {a list of answer bodies} answerBodyList
  */
 const renderResults = function(answerBodyList){
-    answerBodyList.forEach(e => {
-        $('#content').append(`<div class='answer'>${e}</div>`);
-    });
-    $('code').wrap("<div class='code'></div>");
-    $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
+  $('#content').html('');
+  answerBodyList.forEach(e => {
+      $('#content').append(`<div class='answer'>${e}</div>`);
+  });
+  $('code').wrap("<div class='code'></div>");
+  $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
 };
+
+// $('#languageSelector').on('change', "select", getResults('for loop'));
+// $('#languageSelector').on("change", "select", console.log(Date.now()));
+// $('#languageSelector1').on('change', () => console.log('its me'));
+// $('#languageSelector1').on('change', () => console.log('its me'));
 
 
 $(document).on('click', 'code', function(){
