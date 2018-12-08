@@ -1,4 +1,6 @@
-const expect = require('chai').expect;
+mocha.ui('bdd');
+mocha.reporter('html');
+const expect = chai.expect;
 
 describe('Code Mirror Editor Tests', function () {
     var server;
@@ -6,7 +8,7 @@ describe('Code Mirror Editor Tests', function () {
     beforeEach(function() {
         server = sinon.fakeServer.create();
     });
-
+ 
     afterEach(function () {
         server.restore();   
     });
