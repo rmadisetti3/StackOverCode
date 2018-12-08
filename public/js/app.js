@@ -6,6 +6,7 @@
 const getResults = function(queryString,language) {
   queryString = queryString.toLowerCase() + ' ' + language;
   const encodedQueryString = encodeURI(queryString);
+  console.log(encodedQueryString);
   const numberOfResults = 3;
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {

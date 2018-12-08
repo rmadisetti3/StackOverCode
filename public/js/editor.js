@@ -79,7 +79,7 @@ const editor = {
                         const language = $(".same-as-selected")[0].textContent;
                         getResults(questions[0], language);
                     }
-                }, 5000, false))
+                }, 3500, false))
         }
     },
     init: () => {
