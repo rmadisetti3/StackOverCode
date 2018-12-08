@@ -70,10 +70,10 @@ const renderResults = function(answerBodyList, titleList) {
   );
 };
 
-$(document).on("click", "code", function() {
-  $(".code-editor").append(`${$(this).text()}<br />`);
-});
->>>>>>> 96aee25de4f92db8d53ea64302ecc5178102d90e
+// $(document).on("click", "code", function() {
+//   $(".code-editor").append(`${$(this).text()}<br />`);
+// });
+
 ////-------------------end Tri code---------------///////////////
 
 const addCode = function(event) {
