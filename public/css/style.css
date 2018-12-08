@@ -2,7 +2,7 @@ body {
   height: 100vh;
   width: 100vw;
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 4fr 1fr;
   display: grid;
   grid-row: span 1;
   grid-column: span 1;
