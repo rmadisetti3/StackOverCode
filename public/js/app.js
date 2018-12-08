@@ -59,18 +59,18 @@ $(document).on("click", "code", function() {
 });
 ////-------------------end Tri code---------------///////////////
 
-const addCode = function(event) {
-  event.preventDefault();
-  $("#response").empty();
-  $.get(`/api/search`, function(data) {
-    $("#response").text(data.excerpt);
-  });
-};
-$("#response").on("click", addCode);
+// const addCode = function(event) {
+//   event.preventDefault();
+//   $("#response").empty();
+//   $.get(`/api/search`, function(data) {
+//     $("#response").text(data.excerpt);
+//   });
+// };
+// $("#response").on("click", addCode);
 
-$("#response").on("click", function() {
-  $("#response").addClass("active");
-});
+// $("#response").on("click", function() {
+//   $("#response").addClass("active");
+// });
 
 //functions for the drop-down menu
 var x, i, j, selElmnt, a, b, c;
