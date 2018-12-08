@@ -30,25 +30,27 @@
     <title>StackOverCode</title>
   </head>
   <body>
-    <h1 id="title">StackOverCode</h1>
-    <div class="code-editor">
-      <div class="custom-select">
-        <select>
-          <option value="0">Select Language</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="HTML">HTML</option>
-          <option value="CSS">CSS</option>
-        </select>
+    <main>
+      <h1 id="title">StackOverCode</h1>
+      <div class="code-editor">
+        <div class="custom-select">
+          <select>
+            <option value="0">Select Language</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+          </select>
+        </div>
+        <div id="editor"></div>
       </div>
-      <div id="editor"></div>
-    </div>
-    <div class="stack-side">
-      <nav id="stack">
-        <i id="so-icon" class="fab fa-stack-overflow"></i>
-        <h2 id="so-title">Stack Overflow</h2>
-      </nav>
-      <div id="content"></div>
-    </div>
+      <div class="stack-side">
+        <nav id="stack">
+          <i id="so-icon" class="fab fa-stack-overflow"></i>
+          <h2 id="so-title">Stack Overflow</h2>
+        </nav>
+        <div id="content"></div>
+      </div>
+    </main>
     <script src="./js/app.js"></script>
     <script src="./js/editor.js"></script>
   </body>
