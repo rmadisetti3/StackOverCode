@@ -1,4 +1,5 @@
 ////-------------------start Tri code---------------///////////////
+const numberOfResults = 3;
 /**
  * return an array of accepted answer IDs
  * @param {a string} queryString
@@ -6,12 +7,18 @@
 const getResults = function(queryString, language) {
   queryString = queryString.toLowerCase() + " " + language;
   const encodedQueryString = encodeURI(queryString);
-  const numberOfResults = 3;
+  console.log(encodedQueryString);
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {
-    const answerList = results.items.map(e => e.accepted_answer_id);
-    const titleList = results.items.map(e => e.title);
-    getAnswerBody(answerList, titleList);
+    if(results.has_more){
+      let answerList = results.items.map(e => e.accepted_answer_id);
+      let titleList = results.items.map(e => e.title);
+      getAnswerBody(answerList, titleList);
+    } else{
+      $('#content').html('');
+      $('#content').append('<div>No results found. Refine your query</div> <br /> <div>Do: for loop, while loop, function</div> <div>Dont: how to do for loop, forloop, whileloop');
+    }
+    
   });
 };
 
@@ -35,6 +42,7 @@ const getAnswerBody = function(answerList, titleList) {
   $.get(queryURL).then(results => {
     const answerBodyList = results.items.map(e => e.body);
     renderResults(answerBodyList, titleList);
+    editor.listeners.codeSelectReplace();
   });
 };
 
