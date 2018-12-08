@@ -51,9 +51,13 @@ const editor = {
      */
     scanForQuestions: () => {
         let questions = [];
+        let question;
         editor.currentEditor.doc.eachLine( (line) => { 
             if(editor.hasAQuestion(line.text)) {
-                questions.push(line.text.replaceAll("//? ", ""));
+                let text = line.text;
+                question = text.substring(text.indexOf("//? "), text.length);
+                question = question.replaceAll("//? ", "");
+                questions.push(question);
             }
         });
         return questions;
