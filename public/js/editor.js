@@ -17,7 +17,7 @@ const editor = {
             }
         );
 
-        $(".CodeMirror").css("height", "auto");
+        $(".CodeMirror").css("height", "98vh");
 
         editor.listeners.onCursorActivity(editor.currentEditor);
     },
