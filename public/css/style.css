@@ -144,3 +144,12 @@ code {
 .code:hover .tooltiptext {
   visibility: visible;
 }
+
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(64, 206, 64);
+}

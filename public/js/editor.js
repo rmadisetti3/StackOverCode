@@ -77,6 +77,8 @@ const editor = {
             $(".select-items").children().click( () => { 
                 editor.create($("#editor"), 
                 $(".same-as-selected")[0].textContent);
+                const language = $(".same-as-selected")[0].textContent;
+                getResults('while loop',language);
             })
         },
         /**
