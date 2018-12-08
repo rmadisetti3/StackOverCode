@@ -25,7 +25,7 @@ const editor = {
             }
         );
 
-        $(".CodeMirror").css("height", "99vh");
+        $(".CodeMirror").css("height", "98vh");
 
         editor.listeners.onCursorActivity(editor.currentEditor);
     },
@@ -122,9 +122,9 @@ const editor = {
                 }, 5000, false))
         },
         /**
-     *
-     * @param {CodeMirror: Object} _currentEditor 
-     */
+         *
+         * @param {CodeMirror: Object} _currentEditor 
+         */
         codeSelectReplace: () => {
             $('code').click( function(event) {
                 if(editor.currentEditor.doc.somethingSelected()) {

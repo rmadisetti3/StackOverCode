@@ -1,16 +1,17 @@
 ////-------------------start Tri code---------------///////////////
 /**
  * return an array of accepted answer IDs
- * @param {a string} queryString 
+ * @param {a string} queryString
  */
-const getResults = function(queryString,language) {
-  queryString = queryString.toLowerCase() + ' ' + language;
+const getResults = function(queryString, language) {
+  queryString = queryString.toLowerCase() + " " + language;
   const encodedQueryString = encodeURI(queryString);
   const numberOfResults = 3;
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {
     const answerList = results.items.map(e => e.accepted_answer_id);
-    getAnswerBody(answerList);
+    const titleList = results.items.map(e => e.title);
+    getAnswerBody(answerList, titleList);
   });
 };
 
@@ -18,18 +19,23 @@ const getResults = function(queryString,language) {
  * return an array of answer bodies
  * @param {an array of answer IDs} answerList
  */
-const getAnswerBody = function(answerList) {
+const getAnswerBody = function(answerList, titleList) {
   let encodedQueryString = "";
+  let encodedTitleString = "";
   answerList.forEach(e => {
     encodedQueryString += `${e.toString()}%3B`;
   });
+  titleList.forEach(e => {
+    encodedTitleString += `${e.toString()}%3B`;
+  });
   encodedQueryString = encodedQueryString.slice(0, -3);
+  encodedTitleString = encodedTitleString.slice(0, -3);
 
-    const queryURL = `https://api.stackexchange.com/2.2/answers/${encodedQueryString}?&site=stackoverflow&filter=withbody`;
-    $.get(queryURL).then(results => {
-        const answerBodyList = results.items.map(e => e.body);
-        renderResults(answerBodyList);
-    });
+  const queryURL = `https://api.stackexchange.com/2.2/answers/${encodedQueryString}?&site=stackoverflow&filter=withbody`;
+  $.get(queryURL).then(results => {
+    const answerBodyList = results.items.map(e => e.body);
+    renderResults(answerBodyList, titleList);
+  });
 };
 
 /**
@@ -51,6 +57,23 @@ const renderResults = function(answerBodyList){
 //   editor.currentEditor.replaceSelection($(this).textContent);
   // $('.code-editor').append(`${$(this).text()}<br />`);
 // });
+
+const renderResults = function(answerBodyList, titleList) {
+  let index = 0;
+  answerBodyList.forEach(e => {
+    $("#content").append(`<div class="answer"><h3>${titleList[index]}</h3><div >${e}</div></div>`);
+    index++;
+  });
+  $("code").wrap("<div class='code'></div>");
+  $(".code").append(
+    `<span class='tooltiptext'>Click to place code in editor</span>`
+  );
+};
+
+$(document).on("click", "code", function() {
+  $(".code-editor").append(`${$(this).text()}<br />`);
+});
+>>>>>>> 96aee25de4f92db8d53ea64302ecc5178102d90e
 ////-------------------end Tri code---------------///////////////
 
 const addCode = function(event) {
