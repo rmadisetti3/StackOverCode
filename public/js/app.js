@@ -16,7 +16,7 @@ const getResults = function(queryString, language) {
       getAnswerBody(answerList, titleList);
     } else{
       $('#content').html('');
-      $('#content').append('No results found. Refine your query');
+      $('#content').append('<div>No results found. Refine your query</div> <br /> <div>Do: for loop, while loop, function</div> <div>Dont: how to do for loop, forloop, whileloop');
     }
     
   });
