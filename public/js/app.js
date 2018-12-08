@@ -42,6 +42,7 @@ const getAnswerBody = function(answerList, titleList) {
   $.get(queryURL).then(results => {
     const answerBodyList = results.items.map(e => e.body);
     renderResults(answerBodyList, titleList);
+    editor.listeners.codeSelectReplace();
   });
 };
 
