@@ -45,10 +45,6 @@ const getAnswerBody = function(answerList, titleList) {
   });
 };
 
-/**
- * render a list of answer bodies to code-suggestions pane
- * @param {a list of answer bodies} answerBodyList
- */
 const renderResults = function(answerBodyList, titleList) {
   let index = 0;
   answerBodyList.forEach(e => {
@@ -61,9 +57,10 @@ const renderResults = function(answerBodyList, titleList) {
   );
 };
 
-$(document).on("click", "code", function() {
-  $(".code-editor").append(`${$(this).text()}<br />`);
-});
+// $(document).on("click", "code", function() {
+//   $(".code-editor").append(`${$(this).text()}<br />`);
+// });
+
 ////-------------------end Tri code---------------///////////////
 
 const addCode = function(event) {
