@@ -1,4 +1,4 @@
-body {
+main {
   height: 100vh;
   width: 100vw;
   grid-template-rows: 60px 1fr;
@@ -31,6 +31,10 @@ h1 {
 }
 h2 {
   font-size: 35px;
+}
+h3 {
+  font-size: 28px;
+  font-weight: bold;
 }
 #title {
   background-color: black;
@@ -120,7 +124,7 @@ code {
   font-weight: 400;
   cursor: pointer;
 }
-.code{
+.code {
   background-color: white;
   color: black;
   padding: 5px 5px 5px 5px;
@@ -135,6 +139,7 @@ code {
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
+
   position: absolute;
   z-index: 1;
   top: 25px;
