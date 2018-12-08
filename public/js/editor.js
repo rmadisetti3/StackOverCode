@@ -2,6 +2,10 @@
  * 
  */
 
+const _gui = {
+    
+}
+
 const editor = {
     currentEditor: null,
     /**
@@ -63,7 +67,7 @@ const editor = {
         return questions;
     },
     /**
-     * 
+     * Adding replace all function to String class
      * @param {CodeMirror: Object} _currentEditor 
      */
     addReplaceAllFunc: () => {
@@ -84,7 +88,7 @@ const editor = {
             })
         },
         /**
-         * debounce function to delay api calls
+         * Debounce function to delay api calls
          * @version https://github.com/johndugan/javascript-debounce
          * @author John Dugan
          * @param {Function} func 
