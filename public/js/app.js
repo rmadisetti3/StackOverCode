@@ -1,4 +1,5 @@
 ////-------------------start Tri code---------------///////////////
+const numberOfResults = 3;
 /**
  * return an array of accepted answer IDs
  * @param {a string} queryString
@@ -7,12 +8,17 @@ const getResults = function(queryString, language) {
   queryString = queryString.toLowerCase() + " " + language;
   const encodedQueryString = encodeURI(queryString);
   console.log(encodedQueryString);
-  const numberOfResults = 3;
   const queryURL = `https://api.stackexchange.com/2.2/search/advanced?pagesize=${numberOfResults}&order=desc&sort=relevance&accepted=True&title=${encodedQueryString}&site=stackoverflow`;
   $.get(queryURL).then(results => {
-    const answerList = results.items.map(e => e.accepted_answer_id);
-    const titleList = results.items.map(e => e.title);
-    getAnswerBody(answerList, titleList);
+    if(results.has_more){
+      let answerList = results.items.map(e => e.accepted_answer_id);
+      let titleList = results.items.map(e => e.title);
+      getAnswerBody(answerList, titleList);
+    } else{
+      $('#content').html('');
+      $('#content').append('No results found. Refine your query');
+    }
+    
   });
 };
 
