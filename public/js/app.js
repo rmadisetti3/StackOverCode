@@ -38,26 +38,6 @@ const getAnswerBody = function(answerList, titleList) {
   });
 };
 
-/**
- * render a list of answer bodies to code-suggestions pane
- * @param {a list of answer bodies} answerBodyList
- */
-const renderResults = function(answerBodyList){
-    answerBodyList.forEach(e => {
-        $('#content').append(`<div class='answer'>${e}</div>`); 
-        editor.listeners.codeSelectReplace();   
-    });
-    $('code').wrap("<div class='code'></div>");
-    $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
-};
-
-
-// $(document).on('click', 'code', function(){
-//   console.log(this);
-//   editor.currentEditor.replaceSelection($(this).textContent);
-  // $('.code-editor').append(`${$(this).text()}<br />`);
-// });
-
 const renderResults = function(answerBodyList, titleList) {
   let index = 0;
   answerBodyList.forEach(e => {
