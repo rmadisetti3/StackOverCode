@@ -38,7 +38,8 @@ const getAnswerBody = function(answerList) {
  */
 const renderResults = function(answerBodyList){
     answerBodyList.forEach(e => {
-        $('#content').append(`<div class='answer'>${e}</div>`);    
+        $('#content').append(`<div class='answer'>${e}</div>`); 
+        editor.listeners.codeSelectReplace();   
     });
     $('code').wrap("<div class='code'></div>");
     $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
