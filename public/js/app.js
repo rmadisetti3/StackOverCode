@@ -38,7 +38,7 @@ const getAnswerBody = function(answerList) {
  */
 const renderResults = function(answerBodyList){
     answerBodyList.forEach(e => {
-        $('#content').append(`<div class='answer'>${e}</div>`);
+        $('#content').append(`<div class='answer'>${e}</div>`);    
     });
     $('code').wrap("<div class='code'></div>");
     $('.code').append(`<span class='tooltiptext'>Click to place code in editor</span>`);
@@ -46,7 +46,9 @@ const renderResults = function(answerBodyList){
 
 
 // $(document).on('click', 'code', function(){
-//   $('.code-editor').append(`${$(this).text()}<br />`);
+//   console.log(this);
+//   editor.currentEditor.replaceSelection($(this).textContent);
+  // $('.code-editor').append(`${$(this).text()}<br />`);
 // });
 ////-------------------end Tri code---------------///////////////
 

@@ -25,7 +25,7 @@ const editor = {
             }
         );
 
-        $(".CodeMirror").css("height", "auto");
+        $(".CodeMirror").css("height", "99vh");
 
         editor.listeners.onCursorActivity(editor.currentEditor);
     },
@@ -120,6 +120,17 @@ const editor = {
                         getResults(questions[0], language);
                     }
                 }, 5000, false))
+        },
+        /**
+     *
+     * @param {CodeMirror: Object} _currentEditor 
+     */
+        codeSelectReplace: () => {
+            $('code').click( function(event) {
+                if(editor.currentEditor.doc.somethingSelected()) {
+                    editor.currentEditor.doc.replaceSelection(event.target.textContent);
+                }
+            })
         }
     },
      /**
