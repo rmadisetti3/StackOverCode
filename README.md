@@ -43,11 +43,11 @@ We are not currently accepting contributions to this project.
   * Making index.html, style.css, and overall file architecture
   * Supervising over the functions assigned to each group member
 
-* **Tri Nguyen** - 
-  * 
-  * 
-  *
-  *  
+* **Tri Nguyen**
+  * Worked on interfacing with Stack Exchange API
+  * Worked on getting results to query, from Stack Exchange API
+  * Worked on parsing query results to readable format
+  * Worked on styling of query results to front-end
   
 * **David Ye** - (title)
   * 
