@@ -44,7 +44,7 @@ We are not currently accepting contributions to this project.
   * 
   * 
 
-* **Tri Nguyen** - (title)
+* **Tri Nguyen** - 
   * 
   * 
   *
