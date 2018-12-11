@@ -1,16 +1,26 @@
 /**
- * 
+ * Date: 12/10/2018
+ * @version 1.0
+ * @author David Ye
+ * @description Editor that includes functions for
+ *  - Creating a new CodeMirror editor
+ *  - Destroying current CodeMirror editor
+ *  - Listeners to listen to cursor activity
+ *  - Listeners to replace selected text in editor
+ *  - Detect a question starting with a prefix //? 
  */
-
-const _gui = {
-    
-}
 
 const editor = {
     currentEditor: null,
     /**
-     * 
-     * @param {CodeMirror: Object} _currentEditor 
+     * Create an textarea element, appends it to
+     * the container that's passed in and utilizes
+     * the .fromTextArea() from CodeMirror to convert
+     * into an CodeMirror object. Will add a listener
+     * afterwards to listen to cursor in order to prompt
+     * a debounced query to stack overflow.
+     * @param {String} container 
+     * @param {String} language 
      */
     create: (container, language) => {
         editor.destroy(container);
@@ -34,15 +44,16 @@ const editor = {
         editor.listeners.onCursorActivity(editor.currentEditor);
     },
     /**
-     * 
-     * @param {CodeMirror: Object} _currentEditor 
+     * .empty() clone with syntactic sugar
+     * @param {Object: container} _currentEditor 
      */
     destroy: (container) => {
         $(container).empty();
     },
     /**
-     * 
-     * @param {CodeMirror: Object} _currentEditor 
+     * Checks a string to see if it includes a "//? "
+     * And checks if it has any text after it.
+     * @param {String: line} _currentEditor 
      */
     hasAQuestion: (line) => {
         if(line.includes("//? ")) {
@@ -50,8 +61,9 @@ const editor = {
         };
     },
     /**
-     * 
-     * @param {CodeMirror: Object} _currentEditor 
+     * Scans the current CodeMirror editor object 
+     * for lines that includes "//? "
+     * @returns {Array} Questions 
      */
     scanForQuestions: () => {
         let questions = [];
@@ -68,7 +80,6 @@ const editor = {
     },
     /**
      * Adding replace all function to String class
-     * @param {CodeMirror: Object} _currentEditor 
      */
     addReplaceAllFunc: () => {
         String.prototype.replaceAll = function(search, replacement) {
@@ -78,8 +89,7 @@ const editor = {
     },
     listeners: {
         /**
-         * 
-         * @param {CodeMirror: Object} _currentEditor 
+         * Listeners to listen for language selection
          */
         selectEditorLanguage:   () => {
             $(".select-items").children().click( () => { 
@@ -115,8 +125,10 @@ const editor = {
             };
         },
         /**
-         * 
-         * @param {CodeMirror: Object} _currentEditor 
+         * Listener to add to CodeMirror object to listens for 
+         * cursor activity. Upon activity, will fire debounced 
+         * query to stack overflow after 3.5 seconds of no activity.
+         * @param {CodeMirror: editor} _currentEditor 
          */
         onCursorActivity: (_currentEditor) => {
             _currentEditor.on('cursorActivity', editor.listeners.debounce(
@@ -130,8 +142,8 @@ const editor = {
                 }, 3500, false))
         },
         /**
-         *
-         * @param {CodeMirror: Object} _currentEditor 
+         * Listener for replacing the selected text in the editor
+         * upon clicking a code block from the answers on the right.
          */
         codeSelectReplace: () => {
             $('code').click( function(event) {
@@ -142,8 +154,7 @@ const editor = {
         }
     },
      /**
-     *
-     * @param {CodeMirror: Object} _currentEditor 
+     * Initiates all the necessary listeners upon loading
      */
     init: () => {
         editor.listeners.selectEditorLanguage();
