@@ -38,11 +38,10 @@ We are not currently accepting contributions to this project.
 
 ## Authors
 
-* **Raj Madisetti** - Lead Architect
-  * (What you worked on)
-  * 
-  * 
-  * 
+* **Raj Madisetti** - Team Lead
+  * Creating server, routes, and deploying to Heroku
+  * Making index.html, style.css, and overall file architecture
+  * Supervising over the functions assigned to each group member
 
 * **Tri Nguyen** - (title)
   * 
