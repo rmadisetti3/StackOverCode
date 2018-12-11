@@ -41,6 +41,7 @@ We are not currently accepting contributions to this project.
 * **Raj Madisetti** - Team Lead
   * Creating server, routes, and deploying to Heroku
   * Making index.html, style.css, and overall file architecture
+  * Designing user interface of the web page
   * Supervising over the functions assigned to each group member
 
 * **Tri Nguyen**
