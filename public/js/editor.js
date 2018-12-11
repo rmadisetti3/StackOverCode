@@ -2,6 +2,10 @@
  * 
  */
 
+const _gui = {
+    
+}
+
 const editor = {
     currentEditor: null,
     /**
@@ -51,15 +55,19 @@ const editor = {
      */
     scanForQuestions: () => {
         let questions = [];
+        let question;
         editor.currentEditor.doc.eachLine( (line) => { 
             if(editor.hasAQuestion(line.text)) {
-                questions.push(line.text.replaceAll("//? ", ""));
+                let text = line.text;
+                question = text.substring(text.indexOf("//? "), text.length);
+                question = question.replaceAll("//? ", "");
+                questions.push(question);
             }
         });
         return questions;
     },
     /**
-     * 
+     * Adding replace all function to String class
      * @param {CodeMirror: Object} _currentEditor 
      */
     addReplaceAllFunc: () => {
@@ -80,7 +88,7 @@ const editor = {
             })
         },
         /**
-         * debounce function to delay api calls
+         * Debounce function to delay api calls
          * @version https://github.com/johndugan/javascript-debounce
          * @author John Dugan
          * @param {Function} func 
