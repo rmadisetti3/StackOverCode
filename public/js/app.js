@@ -64,19 +64,6 @@ const renderResults = function(answerBodyList, titleList) {
 
 ////-------------------end Tri code---------------///////////////
 
-// const addCode = function(event) {
-//   event.preventDefault();
-//   $("#response").empty();
-//   $.get(`/api/search`, function(data) {
-//     $("#response").text(data.excerpt);
-//   });
-// };
-// $("#response").on("click", addCode);
-
-// $("#response").on("click", function() {
-//   $("#response").addClass("active");
-// });
-
 //functions for the drop-down menu
 var x, i, j, selElmnt, a, b, c;
 /*look for any elements with the class "custom-select":*/
