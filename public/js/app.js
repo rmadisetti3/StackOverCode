@@ -30,7 +30,7 @@ const getAnswerBody = function(answerList, titleList) {
   let encodedQueryString = "";
   let encodedTitleString = "";
   answerList.forEach(e => {
-    encodedQueryString += `${e.toString()}%3B`;
+    encodedQueryString += `${e.toString()}%3B`; 
   });
   titleList.forEach(e => {
     encodedTitleString += `${e.toString()}%3B`;

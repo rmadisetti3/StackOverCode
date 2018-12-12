@@ -18,8 +18,8 @@ describe('Code Mirror Editor Tests', function () {
             let languageDiv = $(".select-items").children()[Math.floor(Math.random()*3)];
             languageDiv.click();
             editor.currentEditor.doc.setValue("//? for loop");
-            setTimeout(()=>{}, 3000);
-            expect($(".answer").length > 0).is.true;
+            setTimeout(expect($(".answer").length > 0).is.true, 3000);
+            // expect($(".answer").length > 0).is.true;
         }
     );
 

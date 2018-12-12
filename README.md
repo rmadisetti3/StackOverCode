@@ -51,17 +51,16 @@ We are not currently accepting contributions to this project.
   * Worked on styling of query results to front-end
   
 * **David Ye** - (title)
-  * 
-  * 
-  * 
-  * 
-  * 
+  * Created functions for interacting with CodeMirror
+  * Created functions for detecting the //? question syntax
+  * Created functions for selecting and replacing text in the editor
+  * Added listeners to detect cursor activity to prompt an api query
+  *  to stack overflow
   
-* **Matthew Carpenter** - (title)
-  * 
-  * 
-  * 
-  * 
+* **Matthew Carpenter**
+  * Assisted with stack exchange query
+  * Assisted with HTML, CSS styles
+  * Assisted with Testing
   
 ## License
 
