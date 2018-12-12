@@ -57,11 +57,10 @@ We are not currently accepting contributions to this project.
   * 
   * 
   
-* **Matthew Carpenter** - (title)
-  * 
-  * 
-  * 
-  * 
+* **Matthew Carpenter**
+  * Assisted with stack exchange query
+  * Assisted with HTML, CSS styles
+  * Assisted with Testing
   
 ## License
 
